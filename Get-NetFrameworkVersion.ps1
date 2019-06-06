@@ -7,7 +7,8 @@ This script checks the registry for the internal version number of the .NET fram
 It displays a human readable version number for all .NET framework versions > 4.5.
 
 .NOTES
-You don't need any special permissions to run the script.
+You don't need any special permissions to run the script. This script is based on the information from Microsoft:
+https://docs.microsoft.com/de-de/dotnet/framework/migration-guide/how-to-determine-which-versions-are-installed
 
 Author:  Marc Debold
 Version: 1.1
