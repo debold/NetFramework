@@ -1,3 +1,25 @@
+<#
+.SYNOPSIS
+Retrieves information about .NET framework and displays the installed version
+
+.DESCRIPTION
+This script checks the registry for the internal version number of the .NET framework on the current computer.
+It displays a human readable version number for all .NET framework versions > 4.5.
+
+.NOTES
+You don't need any special permissions to run the script.
+
+Author:  Marc Debold
+Version: 1.1
+Version History:
+    1.1  06.06.2019  Added support for 4.8
+    1.0  15.03.2018  Initial release
+
+.LINK
+https://www.team-debold.de
+
+#>
+
 $Release = (Get-ChildItem "HKLM:SOFTWARE\Microsoft\NET Framework Setup\NDP\v4\Full\" | Get-ItemProperty -Name Release).Release
 
 if ($Release -ge 528040) {
