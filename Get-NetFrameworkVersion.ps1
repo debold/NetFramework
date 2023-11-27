@@ -11,8 +11,9 @@ You don't need any special permissions to run the script. This script is based o
 https://docs.microsoft.com/de-de/dotnet/framework/migration-guide/how-to-determine-which-versions-are-installed
 
 Author:  Marc Debold
-Version: 1.1
+Version: 1.2
 Version History:
+    1.2  27.11.2023  Added error handling
     1.1  06.06.2019  Added support for 4.8
     1.0  15.03.2018  Initial release
 
@@ -21,7 +22,11 @@ https://www.team-debold.de
 
 #>
 
-$Release = (Get-ChildItem "HKLM:SOFTWARE\Microsoft\NET Framework Setup\NDP\v4\Full\" | Get-ItemProperty -Name Release).Release
+try {
+    $Release = (Get-ChildItem "HKLM:SOFTWARE\Microsoft\NET Framework Setup\NDP\v4\Full\" -ErrorAction Stop | Get-ItemProperty -Name Release -ErrorAction Stop).Release
+} catch {
+    return "Error fetching .NET Framework: $($_.Exception.Message)"
+}
 
 if ($Release -ge 528040) {
     return '.NET Framework 4.8 or later'
